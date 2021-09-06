@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Photos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="empty" *ngIf="photos?.length == 0">
+    <h2>Sorry, no photos</h2>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        *ngFor="let photo of photos"
+        size="6"
+        size-md="4"
+        size-lg="3"
+        class="ion-no-padding"
+      >
+        <ion-card (click)="showPhoto(photo)">
+          <ion-img [src]="photo.img_src"></ion-img>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

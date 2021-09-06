@@ -1,0 +1,58 @@
+<ion-content>
+  <div class="logo">
+    <img src="/assets/nasa_logo.png" />
+    <h2>Mars Rover Photos</h2>
+  </div>
+
+  <ion-list lines="none">
+    <ion-item>
+      <ion-icon color="medium" slot="start" name="car-outline"></ion-icon>
+      <ion-label color="primary" position="stacked">Rover</ion-label>
+      <ion-select
+        placeholder="Please select"
+        interface="action-sheet"
+        cancelText="Cancel"
+        [(ngModel)]="form.rover"
+        (ionChange)="selectRover($event)"
+      >
+        <ion-select-option *ngFor="let rover of rovers" [value]="rover.id"
+          >{{rover.name}}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon color="medium" slot="start" name="videocam-outline"></ion-icon>
+      <ion-label color="primary" position="stacked">Camera</ion-label>
+      <ion-select
+        placeholder="Please select"
+        interface="action-sheet"
+        cancelText="Cancel"
+        [(ngModel)]="form.camera"
+      >
+        <ion-select-option *ngFor="let camera of cameras" [value]="camera.id"
+          >{{camera.name}}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon color="medium" slot="start" name="calendar-outline"></ion-icon>
+      <ion-label color="primary" position="stacked">Date</ion-label>
+      <ion-datetime
+        displayFormat="DD/MM/YYYY"
+        placeholder="dd/mm/yyyy"
+        doneText="OK"
+        cancelText="Cancel"
+        [(ngModel)]="form.date"
+        [max]="dateMax"
+      ></ion-datetime>
+    </ion-item>
+  </ion-list>
+
+  <div class="ion-padding">
+    <ion-button expand="block" (click)="goPhotos()" [disabled]="!isValidForm()">
+      <ion-icon slot="start" name="images-outline"></ion-icon>Search Photos
+    </ion-button>
+  </div>
+</ion-content>
